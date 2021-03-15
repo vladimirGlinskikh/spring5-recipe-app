@@ -1,5 +1,7 @@
 package kz.zhelezyaka.services;
 
+import kz.zhelezyaka.converters.RecipeCommandToRecipe;
+import kz.zhelezyaka.converters.RecipeToRecipeCommand;
 import kz.zhelezyaka.domain.Recipe;
 import kz.zhelezyaka.repositories.RecipeRepository;
 import org.junit.Before;
@@ -20,10 +22,16 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
